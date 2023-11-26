@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Text Editor</title>
+    <!-- Corrected link to Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Added a separate style sheet link for your custom styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="text-editor">
+        <div class="top-ribbon">
+            <div class="section">
+                <b>Font Size</b>
+                <div class="symbol">
+                    <!-- Changed the input type to range for font size selection -->
+                    <input type="range" value="16" min="1" max="100" id="font-size" onchange="fontSize(this)">
+                </div>
+            </div>
+
+            <div class="section">
+                <b>Text Style</b>
+                <div class="symbol">
+                    <!-- Added specific classes for the font awesome icons -->
+                    <button type="button" onclick='bold(this)'><i class="fas fa-bold"></i></button>
+                    <button type="button" onclick='italic(this)'><i class="fas fa-italic"></i></button>
+                    <button type="button" onclick='under(this)'><i class="fas fa-underline"></i></button>
+                </div>
+            </div>
+
+            <div class="section">
+                <b>Text Format</b>
+                <div class="symbol">
+                    <button type="button" onclick='left(this)'><i class="fas fa-align-left"></i></button>
+                    <button type="button" onclick='center(this)'><i class="fas fa-align-center"></i></button>
+                    <button type="button" onclick='right(this)'><i class="fas fa-align-right"></i></button>
+                </div>
+            </div>
+
+            <div class="section">
+                <b>Text Decoration</b>
+                <div class="symbol">
+                    <!-- Corrected the class names for font awesome icons -->
+                    <button type="button" onclick='strike(this)'><i class="fas fa-strikethrough"></i></button>
+                    <button type="button" onclick='upper(this)'><i >aA</i></button>
+                    <input type="color" onchange="color(this)" id="color">
+                </div>
+            </div>
+        </div>
+
+        <div class="text-area">
+            <textarea id="textarea"></textarea>
+        </div>
+    </div>
+    <script>
+        const textarea = document.getElementById('textarea');
+
+        function fontSize(e) {
+            const size = e.value;
+            textarea.style.fontSize = size + 'px';
+        }
+
+        function bold(e) {
+            if (textarea.style.fontWeight === 'bold') {
+                textarea.style.fontWeight = 'normal';
+                e.classList.remove('button');
+            } else {
+                textarea.style.fontWeight = 'bold';
+                e.classList.add('button');
+            }
+        }
+
+        function italic(e) {
+            if (textarea.style.fontStyle === 'italic') {
+                textarea.style.fontStyle = 'normal';
+                e.classList.remove('button');
+            } else {
+                textarea.style.fontStyle = 'italic';
+                e.classList.add('button');
+            }
+        }
+
+        function under(e) {
+            if (textarea.style.textDecoration === 'underline') {
+                textarea.style.textDecoration = 'none';
+                e.classList.remove('button');
+            } else {
+                textarea.style.textDecoration = 'underline';
+                e.classList.add('button');
+            }
+        }
+
+        function left(e) {
+            textarea.style.textAlign = 'left';
+        }
+
+        function center(e) {
+            textarea.style.textAlign = 'center';
+        }
+
+        function right(e) {
+            textarea.style.textAlign = 'right';
+        }
+
+        function upper(e) {
+            if (textarea.style.textTransform === 'uppercase') {
+                textarea.style.textTransform = 'lowercase';
+                e.classList.remove('button');
+            } else {
+                textarea.style.textTransform = 'uppercase';
+                e.classList.add('button');
+            }
+        }
+
+        function strike(e) {
+            if ( textarea.style.textDecoration = 'line-through') {
+                textarea.style.textDecoration = 'normal';
+                e.classList.remove('button');
+            } else {
+                textarea.style.textDecoration = 'line-through';
+                e.classList.add('button');
+            }
+
+          
+        }
+
+        function color(e) {
+            const value = e.value;
+            textarea.style.color = value;
+        }
+    </script>
+</body>
+</html>
